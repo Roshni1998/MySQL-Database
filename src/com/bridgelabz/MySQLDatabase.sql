@@ -179,21 +179,20 @@ mysql> SELECT gender, count(gender) FROM employee_payroll GROUP BY gender;
 2 rows in set (0.00 sec)
 
 /* UC-8 */
-mysql> ALTER TABLE employee_payroll
-    -> ADD phone_number VARCHAR(250) AFTER name;
-Query OK, 0 rows affected (2.20 sec)
+mysql> ALTER TABLE employee_payroll ADD phone_number VARCHAR(250) AFTER name;
+Query OK, 0 rows affected (2.73 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> ALTER TABLE employee_payroll ADD address VARCHAR(250) AFTER phone_number;
-Query OK, 0 rows affected (1.30 sec)
+Query OK, 0 rows affected (1.34 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> ALTER TABLE employee_payroll ADD department VARCHAR(150) NOT NULL AFTER address;
-Query OK, 0 rows affected (1.38 sec)
+Query OK, 0 rows affected (1.80 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> ALTER TABLE employee_payroll ALTER address SET DEFAULT 'TBD';
-Query OK, 0 rows affected (0.53 sec)
+Query OK, 0 rows affected (0.30 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
 mysql> desc employee_payroll;
@@ -205,9 +204,8 @@ mysql> desc employee_payroll;
 | phone_number | varchar(250) | YES  |     | NULL    |                |
 | address      | varchar(250) | YES  |     | TBD     |                |
 | department   | varchar(150) | NO   |     | NULL    |                |
-| salary       | double       | NO   |     | NULL    |                |
+| salary       | int          | NO   |     | NULL    |                |
 | start        | date         | YES  |     | NULL    |                |
-| gender       | varchar(10)  | NO   |     | NULL    |                |
+| gender       | char(1)      | YES  |     | NULL    |                |
 +--------------+--------------+------+-----+---------+----------------+
 8 rows in set (0.02 sec)
-
