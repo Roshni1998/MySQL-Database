@@ -209,3 +209,36 @@ mysql> desc employee_payroll;
 | gender       | char(1)      | YES  |     | NULL    |                |
 +--------------+--------------+------+-----+---------+----------------+
 8 rows in set (0.02 sec)
+
+/* UC-9 */
+mysql> ALTER TABLE employee_payroll RENAME COLUMN salary TO basic_pay;
+Query OK, 0 rows affected (0.22 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD deductions Double NOT NULL AFTER basic_pay;
+Query OK, 0 rows affected (2.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD taxable_pay Double NOT NULL AFTER deductions;
+Query OK, 0 rows affected (1.46 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD tax Double NOT NULL AFTER taxable_pay;
+Query OK, 0 rows affected (2.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD net_pay Double NOT NULL AFTER tax;
+Query OK, 0 rows affected (1.47 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+| id | name    | phone_number | address | department | basic_pay | deductions | taxable_pay | tax | net_pay | start      | gender |
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+|  1 | Merrisa | NULL         | NULL    |            |   3200000 |          0 |           0 |   0 |       0 | 2021-07-03 | F      |
+|  2 | Bill    | NULL         | NULL    |            |   1000000 |          0 |           0 |   0 |       0 | 2021-07-09 | M      |
+|  3 | Mary    | NULL         | NULL    |            |   1200000 |          0 |           0 |   0 |       0 | 2021-07-09 | F      |
+|  4 | David   | NULL         | NULL    |            |   2200000 |          0 |           0 |   0 |       0 | 2021-07-02 | M      |
+|  5 | John    | NULL         | NULL    |            |   5000000 |          0 |           0 |   0 |       0 | 2021-04-06 | M      |
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+5 rows in set (0.00 sec)
