@@ -55,6 +55,7 @@ mysql> INSERT INTO employee_payroll
 Query OK, 3 rows affected (0.22 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 
+/* UC-4 */
 mysql> SELECT * FROM employee_payroll;
 +----+---------+---------+------------+
 | id | name    | salary  | start      |
