@@ -242,3 +242,35 @@ mysql> SELECT * FROM employee_payroll;
 |  5 | John    | NULL         | NULL    |            |   5000000 |          0 |           0 |   0 |       0 | 2021-04-06 | M      |
 +----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
 5 rows in set (0.00 sec)
+
+/* UC-10 */
+mysql> UPDATE employee_payroll
+    -> SET department = 'Sales' WHERE name = 'Merrisa';
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+| id | name    | phone_number | address | department | basic_pay | deductions | taxable_pay | tax | net_pay | start      | gender |
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+|  1 | Merrisa | NULL         | NULL    | Sales      |   3200000 |          0 |           0 |   0 |       0 | 2021-07-03 | F      |
+|  2 | Bill    | NULL         | NULL    |            |   1000000 |          0 |           0 |   0 |       0 | 2021-07-09 | M      |
+|  3 | Mary    | NULL         | NULL    |            |   1200000 |          0 |           0 |   0 |       0 | 2021-07-09 | F      |
+|  4 | David   | NULL         | NULL    |            |   2200000 |          0 |           0 |   0 |       0 | 2021-07-02 | M      |
+|  5 | John    | NULL         | NULL    |            |   5000000 |          0 |           0 |   0 |       0 | 2021-04-06 | M      |
++----+---------+--------------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+
+5 rows in set (0.03 sec)
+
+mysql> INSERT INTO employee_payroll
+    -> (name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
+    -> ('Merrisa', 'Marketing', 'F', 300000.00, 100000.00, 200000.00, 500000.00, 150000.00, '2021-03-01');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> SELECT * FROM employee_payroll WHERE name = 'Merrisa';
++----+---------+--------------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+
+| id | name    | phone_number | address | department | basic_pay | deductions | taxable_pay | tax    | net_pay | start      | gender |
++----+---------+--------------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+
+|  1 | Merrisa | NULL         | NULL    | Sales      |   3200000 |          0 |           0 |      0 |       0 | 2021-07-03 | F      |
+|  6 | Merrisa | NULL         | TBD     | Marketing  |    300000 |     100000 |      200000 | 500000 |  150000 | 2021-03-01 | F      |
++----+---------+--------------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+
+2 rows in set (0.10 sec)
